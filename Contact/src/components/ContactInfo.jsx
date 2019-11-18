@@ -4,8 +4,8 @@ import PropTypes from "prop-types";
 export default class ContactInfo extends Component {
   render() {
     return (
-      <div>
-        {this.props.contact.name} {this.props.contact.phone}
+      <div onClick={this.props.onClick} onKeyDown={this.props.onKeyDown}>
+        {this.props.contact.name}
       </div>
     );
   }
@@ -13,6 +13,8 @@ export default class ContactInfo extends Component {
 
 ContactInfo.defaultProps = {
   contact: {},
+  onClick: () => {},
+  onKeyDown: () => {},
 };
 
 ContactInfo.propTypes = {
@@ -20,4 +22,6 @@ ContactInfo.propTypes = {
     name: PropTypes.string,
     phone: PropTypes.string,
   }),
+  onClick: PropTypes.func,
+  onKeyDown: PropTypes.func,
 };

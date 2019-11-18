@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import ContactInfo from "./ContactInfo";
+import ContactDetails from "./ContactDetails";
 
 export default class Contact extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      selectedKey: -1,
       keyword: "",
       contactData: [
         {
@@ -13,11 +15,11 @@ export default class Contact extends Component {
         },
         {
           name: "Betty",
-          phone: "010-0000-0001",
+          phone: "010-0000-0002",
         },
         {
           name: "Charie",
-          phone: "010-0000-0001",
+          phone: "010-0000-0003",
         },
       ],
     };
@@ -26,6 +28,12 @@ export default class Contact extends Component {
   handleChange = (e) => {
     this.setState({
       keyword: e.target.value,
+    });
+  };
+
+  handleClick = (key) => {
+    this.setState({
+      selectedKey: key,
     });
   };
 
@@ -39,7 +47,18 @@ export default class Contact extends Component {
         );
       });
       return filterdData.map((contact, i) => {
-        return <ContactInfo contact={contact} key={i + contact.toString()} />;
+        return (
+          <ContactInfo
+            contact={contact}
+            key={i + contact.toString()}
+            onClick={() => {
+              this.handleClick(i);
+            }}
+            onKeyDown={() => {
+              this.handleClick(i);
+            }}
+          />
+        );
       });
     };
 
@@ -54,6 +73,10 @@ export default class Contact extends Component {
           onChange={this.handleChange}
         />
         <div>{mapToComponents(this.state.contactData)}</div>
+        <ContactDetails
+          isSelected={this.state.selectedKey > -1}
+          contact={this.state.contactData[this.state.selectedKey]}
+        />
       </div>
     );
   }
