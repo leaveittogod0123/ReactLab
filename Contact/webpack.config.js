@@ -5,12 +5,12 @@ module.exports = {
   // moduel export (옛날 방식..)
   entry: "./src/index", // 리액트 파일이 시작하는 곳
   resolve: {
-    extensions: [".jsx", ".js"]
+    extensions: [".jsx", ".js"],
   },
   output: {
     // bundled compiled 파일
-    path: path.join(__dirname, "/dist"), //__dirname : 현재 디렉토리, dist 폴더에 모든 컴파일된 하나의 번들파일을 넣을 예정
-    filename: "index_bundle.js"
+    path: path.join(__dirname, "/dist"),
+    filename: "index_bundle.js",
   },
   module: {
     // javascript 모듈을 생성할 규칙을 지정 (node_module을 제외한.js 파일을 babel-loader로 불러와 모듈을 생성
@@ -22,15 +22,15 @@ module.exports = {
           loader: "babel-loader", // babel loader가 파이프를 통해 js 코드를 불러옴
           options: {
             presets: ["@babel/preset-env", "@babel/preset-react"],
-            plugins: ["@babel/proposal-class-properties"]
-          }
-        }
-      }
-    ]
+            plugins: ["@babel/proposal-class-properties"],
+          },
+        },
+      },
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/index.html" // 생성한 템플릿 파일
-    })
-  ]
+      template: "./src/index.html", // 생성한 템플릿 파일
+    }),
+  ],
 };
