@@ -36,6 +36,16 @@ export default class ContactDetails extends Component {
     this.props.onEdit(this.state.name, this.state.phone);
   };
 
+  handleKeyPress = (e) => {
+    // if(e.charCode === 13) { //  deprecated
+    //   this.handleClick();
+    // }
+
+    if (e.key === "Enter") {
+      this.handleToggle();
+    }
+  };
+
   render() {
     const details = (
       <div>
@@ -62,6 +72,7 @@ export default class ContactDetails extends Component {
             placeholder="phone"
             value={this.state.phone}
             onChange={this.handleChange}
+            onKeyPress={this.handleKeyPress}
           />
         </p>
       </div>

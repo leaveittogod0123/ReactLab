@@ -18,12 +18,26 @@ export default class ContactCreate extends Component {
 
   handleClick = () => {
     const { name, phone } = this.state;
+    if (name === "" || phone === "") return;
+
     const contact = { name, phone }; //Object Property Value Shorthand
     this.props.onCreate(contact);
     this.setState({
       name: "",
       phone: "",
     });
+
+    this.nameInput.focus();
+  };
+
+  handleKeyPress = (e) => {
+    // if(e.charCode === 13) { //  deprecated
+    //   this.handleClick();
+    // }
+
+    if (e.key === "Enter") {
+      this.handleClick();
+    }
   };
 
   render() {
@@ -37,6 +51,9 @@ export default class ContactCreate extends Component {
             placeholder="name"
             value={this.state.name}
             onChange={this.handleChange}
+            ref={(ref) => {
+              this.nameInput = ref;
+            }}
           />
           <input
             type="text"
@@ -44,6 +61,7 @@ export default class ContactCreate extends Component {
             placeholder="phone"
             value={this.state.phone}
             onChange={this.handleChange}
+            onKeyPress={this.handleKeyPress}
           />
         </div>
         <button type="button" onClick={this.handleClick}>

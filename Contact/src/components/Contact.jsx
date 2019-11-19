@@ -24,6 +24,15 @@ export default class Contact extends Component {
         },
       ],
     };
+
+    const contactData = localStorage.contactData;
+
+    if (contactData) {
+      this.state = {
+        ...this.state,
+        contactData: JSON.parse(contactData),
+      };
+    }
   }
 
   handleChange = (e) => {
@@ -68,6 +77,15 @@ export default class Contact extends Component {
       contactData: [...contactData],
     });
   };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      JSON.stringify(prevState.contactData) !==
+      JSON.stringify(this.state.contactData)
+    ) {
+      localStorage.contactData = JSON.stringify(this.state.contactData);
+    }
+  }
 
   render() {
     const mapToComponents = (data) => {
