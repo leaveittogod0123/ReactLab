@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ContactInfo from "./ContactInfo";
 import ContactDetails from "./ContactDetails";
+import ContactCreate from "./ContactCreate";
 
 export default class Contact extends Component {
   constructor(props) {
@@ -34,6 +35,37 @@ export default class Contact extends Component {
   handleClick = (key) => {
     this.setState({
       selectedKey: key,
+    });
+  };
+
+  handleCreate = (contact) => {
+    const { contactData } = this.state;
+    console.log(contactData);
+    this.setState({
+      contactData: contactData.concat(contact),
+    });
+  };
+
+  handleRemove = () => {
+    const { selectedKey, contactData } = this.state;
+    this.setState({
+      contactData: contactData.filter(
+        (contact, index) => index !== selectedKey,
+      ),
+      selectedKey: -1,
+    });
+  };
+
+  handleEdit = (name, phone) => {
+    const { selectedKey, contactData } = this.state;
+    if (selectedKey === -1) return;
+
+    contactData[selectedKey] = {
+      name,
+      phone,
+    };
+    this.setState({
+      contactData: [...contactData],
     });
   };
 
@@ -76,7 +108,10 @@ export default class Contact extends Component {
         <ContactDetails
           isSelected={this.state.selectedKey > -1}
           contact={this.state.contactData[this.state.selectedKey]}
+          onRemove={this.handleRemove}
+          onEdit={this.handleEdit}
         />
+        <ContactCreate onCreate={this.handleCreate} />
       </div>
     );
   }
