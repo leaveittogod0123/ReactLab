@@ -15,7 +15,6 @@
     "@babel/core": "^7.7.2",
     "@babel/preset-env": "^7.7.1",
     "@babel/preset-react": "^7.7.0",
-    "add": "^2.0.6",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
     "classnames": "^2.2.6",
@@ -34,8 +33,7 @@
     "style-loader": "^1.0.0",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
-    "webpack-dev-server": "^3.9.0",
-    "yarn": "^1.19.1"
+    "webpack-dev-server": "^3.9.0"
   },
   "eslintConfig": {
     "parser": "babel-eslint",
