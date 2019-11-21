@@ -1,3 +1,6 @@
+$small: 768px;
+$middle: 1024px;
+
 .nav {
   display: flex;
   justify-content: space-around;
@@ -16,5 +19,81 @@
 
 .navLinks {
   display: flex;
-  background-color: red;
+  justify-content: space-around;
+  width: 30%;
+}
+
+.navLinks li {
+  list-style: none;
+}
+
+.navLinks a {
+  color: rgb(226, 226, 226);
+  text-decoration: none;
+  letter-spacing: 3px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.burger {
+  display: none;
+}
+
+.burger div {
+  width: 25px;
+  height: 2px;
+  background-color: rgb(226, 226, 226);
+  margin: 5px;
+}
+
+@media screen and (max-width: $middle) {
+  .navLinks {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: $small) {
+  body {
+    overflow-x: hidden;
+  }
+  .navLinks {
+    position: absolute;
+    right: 0px;
+    height: 92vh;
+    top: 8vh;
+    background-color: #5d4954;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    transform: translateX(100%);
+  }
+
+  .navLinks li {
+    opacity: 0;
+  }
+
+  .burger {
+    display: block;
+  }
+}
+
+.navActive {
+  transform: translateX(0%);
+}
+
+@keyframes navLinkFade {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.navLinksFade {
+  animation: navLinkFade 2s ease forwards;
 }

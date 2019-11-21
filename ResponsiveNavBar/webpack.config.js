@@ -19,7 +19,8 @@ module.exports = {
         use: {
           loader: "babel-loader",
           options: {
-            presets: ["@babel/preset-env", "@babel/preset-react"]
+            presets: ["@babel/preset-env", "@babel/preset-react"],
+            plugins: ["@babel/plugin-proposal-class-properties"]
           }
         }
       },
@@ -27,6 +28,7 @@ module.exports = {
         test: /\.scss$/,
         exclude: /node_module/,
         use: [
+          "css-hot-loader",
           MiniCssExtractPlugin.loader,
           {
             loader: "css-loader",

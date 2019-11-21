@@ -13,11 +13,13 @@
   },
   "devDependencies": {
     "@babel/core": "^7.7.2",
+    "@babel/plugin-proposal-class-properties": "^7.7.0",
     "@babel/preset-env": "^7.7.1",
     "@babel/preset-react": "^7.7.0",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
     "classnames": "^2.2.6",
+    "css-hot-loader": "^1.4.4",
     "css-loader": "^3.2.0",
     "eslint": "6.1.0",
     "eslint-config-airbnb": "18.0.1",
@@ -53,7 +55,9 @@
         {
           "peerDependencies": true
         }
-      ]
+      ],
+      "jsx-a11y/anchor-is-valid": 0,
+      "array-callback-return": 0
     },
     "env": {
       "browser": true,
