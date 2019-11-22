@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { createContact } from "../actions";
 
 export default class ContactCreate extends Component {
   constructor(props) {
@@ -20,7 +22,7 @@ export default class ContactCreate extends Component {
     const { name, phone } = this.state;
     if (name === "" || phone === "") return;
 
-    const contact = { name, phone }; //Object Property Value Shorthand
+    const contact = { name, phone };
     this.props.onCreate(contact);
     this.setState({
       name: "",
@@ -79,3 +81,15 @@ ContactCreate.defaultProps = {
 ContactCreate.propTypes = {
   onCreate: PropTypes.func,
 };
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onCreate: ({ name, phone }) => dispatch(createContact(name, phone)),
+  };
+};
+
+const mapStateToProps = (state) => {
+  return state;
+};
+
+ContactCreate = connect(mapStateToProps, mapDispatchToProps)(ContactCreate);

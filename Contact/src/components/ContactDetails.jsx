@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { removeContact, modifyContact } from "../actions";
 
 export default class ContactDetails extends Component {
   constructor(props) {
@@ -27,8 +29,9 @@ export default class ContactDetails extends Component {
       this.handleEdit();
     }
 
+    const { isEdit } = this.state;
     this.setState({
-      isEdit: !this.state.isEdit,
+      isEdit: !isEdit,
     });
   };
 
@@ -112,3 +115,15 @@ ContactDetails.propTypes = {
   onRemove: PropTypes.func,
   onEdit: PropTypes.func,
 };
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onEdit: (name, phone) => dispatch(modifyContact(name, phone)),
+    onRemove: () => dispatch(removeContact()),
+  };
+};
+
+const mapStateToProps = (state) => {
+  return state;
+};
+ContactDetails = connect(mapStateToProps, mapDispatchToProps)(ContactDetails);

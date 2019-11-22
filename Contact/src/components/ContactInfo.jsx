@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 export default class ContactInfo extends Component {
   render() {
@@ -25,3 +26,8 @@ ContactInfo.propTypes = {
   onClick: PropTypes.func,
   onKeyDown: PropTypes.func,
 };
+
+const mapStateToProps = (state) => {
+  return state;
+};
+ContactInfo = connect(mapStateToProps)(ContactInfo);
