@@ -4,7 +4,7 @@
 
 #### 사용 기술 스택
 
-Node.js(v10.16), React.js, Webpack
+Node.js(v10.16), React.js, Webpack, prettier, babel
 
 #### 사용방법
 
