@@ -40,10 +40,6 @@ export default class ContactDetails extends Component {
   };
 
   handleKeyPress = (e) => {
-    // if(e.charCode === 13) { //  deprecated
-    //   this.handleClick();
-    // }
-
     if (e.key === "Enter") {
       this.handleToggle();
     }

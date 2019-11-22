@@ -24,6 +24,11 @@ const initialState = {
   ],
 };
 
+const { contactDataFromLocalStorage } = localStorage;
+initialState.contactData = contactDataFromLocalStorage
+  ? JSON.parse(contactDataFromLocalStorage)
+  : initialState.contactData;
+
 export default function manageContact(state = initialState, action) {
   switch (action.type) {
     case CREATECONTACT: {

@@ -12,15 +12,6 @@ export default class Contact extends Component {
     this.state = {
       keyword: "",
     };
-
-    // const { contactData } = localStorage;
-
-    // if (contactData) {
-    //   this.state = {
-    //     ...this.state,
-    //     contactData: JSON.parse(contactData),
-    //   };
-    // }
   }
 
   handleChange = (e) => {
@@ -29,14 +20,16 @@ export default class Contact extends Component {
     });
   };
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (
-  //     JSON.stringify(prevState.contactData) !==
-  //     JSON.stringify(this.props.contactData)
-  //   ) {
-  //     localStorage.contactData = JSON.stringify(this.props.contactData);
-  //   }
-  // }
+  componentDidUpdate(prevProps) {
+    if (
+      JSON.stringify(prevProps.contactData) !==
+      JSON.stringify(this.props.contactData)
+    ) {
+      localStorage.contactDataFromLocalStorage = JSON.stringify(
+        this.props.contactData,
+      );
+    }
+  }
 
   render() {
     const mapToComponents = (data) => {
@@ -77,10 +70,7 @@ export default class Contact extends Component {
         <ContactDetails
           isSelected={this.props.selectedKey > -1}
           contact={this.props.contactData[this.props.selectedKey]}
-          // onRemove={this.handleRemove}
-          // onEdit={this.handleEdit}
         />
-        {/* <ContactCreate onCreate={this.handleCreate} /> */}
         <ContactCreate />
       </div>
     );
